@@ -11,6 +11,8 @@ use PDF;
 use Notification;
 use Helper;
 use Illuminate\Support\Str;
+use App\Jobs\SendEmail;
+use App\Mail\MailNotify;
 use App\Notifications\StatusNotification;
 
 class OrderController extends Controller
@@ -74,14 +76,16 @@ class OrderController extends Controller
             'fas'=>'fa-file-alt'
         ];
         Notification::send($users, new StatusNotification($details));
-        if(request('payment_method')=='paypal'){
-            return redirect()->route('payment')->with(['id'=>$order->id]);
-        }
-        else{
-            session()->forget('cart');
-            session()->forget('coupon');
-        }
+       
         Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
+
+        $usersMail=User::where('role','admin')->get();
+        $message = [
+            'type' => 'Có đơn đặt xe mới',
+            'task' => $request->phone,
+            'content' => 'Vừa đặt xe, vào kiểm tra ngay nào!',
+        ];
+        SendEmail::dispatch($message, $usersMail)->delay(now()->addMinute(1));
 
         // dd($users);        
         request()->session()->flash('success','Đặt xe thành công');

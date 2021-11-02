@@ -94,7 +94,7 @@
                             	
                             @else 
                             <p class="text-center p-5">
-                                You need to <a href="{{route('login.form')}}" style="color:rgb(54, 54, 204)">Login</a> OR <a style="color:blue" href="{{route('register.form')}}">Đăng ký</a> để tham gia bình luận.
+                                Bạn cần phải <a href="{{route('login.form')}}" style="color:rgb(54, 54, 204)">Đăng nhập</a> hoặc <a style="color:blue" href="{{route('register.form')}}">Đăng ký</a> để tham gia bình luận.
 
                             </p>
 
