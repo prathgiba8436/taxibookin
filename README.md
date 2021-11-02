@@ -13,8 +13,12 @@
 10. run command[laravel file manager]:-  php artisan storage:link
 11. Edit .env file :- remove APP_URL
 10. php artisan serve 
+<<<<<<< HEAD
 11. Visit localhost:8000 
 12. 
 
 
+=======
+11. Visit localhost:8000 in your browser
+>>>>>>> a4ff7f164ae8c9874531ff7ab95690452169ad89
 
