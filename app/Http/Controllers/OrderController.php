@@ -59,7 +59,8 @@ class OrderController extends Controller
         $order=new Order();
         $order_data=$request->all();
         $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
-        $order_data['user_id']=$request->user()->id;
+
+        // $order_data['user_id']=$request->user()->id;
         // return session('coupon')['value'];
 
         // return $order_data['total_amount'];
@@ -77,7 +78,7 @@ class OrderController extends Controller
         ];
         Notification::send($users, new StatusNotification($details));
        
-        Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
+        // Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
         $usersMail=User::where('role','admin')->get();
         $message = [
