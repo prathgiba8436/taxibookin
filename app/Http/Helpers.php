@@ -7,7 +7,7 @@ use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\Shipping;
 use App\Models\Cart;
-// use Auth;
+namespace App\Http\Helpers;
 class Helper{
     public static function messageList()
     {
