@@ -12,18 +12,8 @@ use Spatie\Activitylog\Models\Activity;
 class AdminController extends Controller
 {
     public function index(){
-        $data = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
-        ->where('created_at', '>', Carbon::today()->subDay(6))
-        ->groupBy('day_name','day')
-        ->orderBy('day')
-        ->get();
-     $array[] = ['Name', 'Number'];
-     foreach($data as $key => $value)
-     {
-       $array[++$key] = [$value->day_name, $value->count];
-     }
-    //  return $data;
-     return view('backend.index')->with('users', json_encode($array));
+
+     return view('backend.index');
     }
 
     public function profile(){
@@ -92,22 +82,7 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('success','Thay đổi mật khẩu thành công');
     }
 
-    // Pie chart
-    public function userPieChart(Request $request){
-        // dd($request->all());
-        $data = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
-        ->where('created_at', '>', Carbon::today()->subDay(6))
-        ->groupBy('day_name','day')
-        ->orderBy('day')
-        ->get();
-     $array[] = ['Name', 'Number'];
-     foreach($data as $key => $value)
-     {
-       $array[++$key] = [$value->day_name, $value->count];
-     }
-    //  return $data;
-     return view('backend.index')->with('course', json_encode($array));
-    }
+
 
     // public function activity(){
     //     return Activity::all();
