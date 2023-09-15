@@ -14,5 +14,6 @@
 11. Edit .env file :- remove APP_URL
 10. php artisan serve 
 11. Visit localhost:8000 
-
-
+11111111111
+    222222222222
+    3333333333333
